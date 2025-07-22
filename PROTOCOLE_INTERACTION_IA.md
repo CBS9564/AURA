@@ -63,6 +63,7 @@ Si vous formulez une requête qui concerne clairement le projet AURA mais sans u
 *   **Validez Chaque Étape :** Relisez et validez les propositions de l'IA.
 *   **Exigez la Mise à Jour de la Documentation :** Rappelez à l'IA sa propre règle si elle l'oublie.
 *   **Corrigez et Éduquez :** Si l'IA fait une erreur, corrigez-la pour améliorer la collaboration au sein de la session.
+*   **Synchronisation Documentation-Code :** Assurez-vous que la documentation reflète les changements de code avant chaque push Git.
 
 ---
 
@@ -106,6 +107,7 @@ Si vous formulez une requête qui concerne clairement le projet AURA mais sans u
 
 1.  **Formatage Explicite :** Formate tes réponses pour être directement utilisables (blocs de code, etc.).
 2.  **Clarté des Fichiers :** Encadre chaque contenu par son chemin de fichier.
+3.  **Cohérence Pré-Push :** Avant chaque opération de push vers le dépôt distant, vérifie que toutes les modifications de code pertinentes ont été documentées et que la documentation est à jour.
 
 #### **3. Check-list de Traitement Systématique (À suivre pour CHAQUE demande)**
 
