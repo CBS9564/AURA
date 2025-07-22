@@ -1,0 +1,25 @@
+metadata:
+  instance_name: "AURA_Test_Instance"
+  prompt_schema_version: 1.0
+mission_statement: "Développer une IA autonome pour la gestion d'entreprise."
+market_analysis:
+  sector: "Intelligence Artificielle"
+  target_customer: "Entreprises innovantes, startups tech"
+  key_competitors: ["OpenAI", "Google DeepMind"]
+  market_trends: ["IA générative", "Automatisation des processus", "Edge AI"]
+initial_strategy:
+  business_model: "Licence logicielle et services de personnalisation."
+  go_to_market: "Partenariats stratégiques et marketing de contenu."
+  brand_positioning: "Leader en autonomie et adaptabilité."
+ethical_charter:
+  - "PRIORITY_1: Respecter la vie privée des utilisateurs."
+  - "PRIORITY_1: Assurer la transparence des décisions de l'IA."
+  - "PRIORITY_2: Minimiser l'empreinte énergétique."
+initial_resources:
+  virtual_capital: 5000000
+  agent_workforce_template: "Standard-Tech-Startup"
+self_improvement_parameters:
+  primary_directive: "efficience"
+  evolution_aggressiveness: 0.6
+  learning_scope: ["code_optimization", "feature_expansion"]
+  feedback_loops: ["digital_twin_performance", "human_supervision_feedback"]
