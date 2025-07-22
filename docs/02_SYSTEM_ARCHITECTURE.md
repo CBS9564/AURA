@@ -29,6 +29,7 @@ L'architecture d'AURA est modulaire, conçue pour la résilience et l'évolutivi
 
 *   **Rôle :** Doter chaque agent d'une "personnalité" et d'une capacité de raisonnement. C'est le cerveau individuel de chaque unité.
 *   **Composants Clés :**
+    *   **BaseAgent (Implémentation Fondamentale) :** La classe abstraite `BaseAgent` (`src/core/agents/base_agent.py`) définit la structure commune et les méthodes fondamentales (perceive, decide, act, communicate) pour tous les agents d'AURA.
     *   **Architecte de Personas :** Un système qui, à partir d'une fiche de poste (ex: "CFO"), configure un agent avec des objectifs (maximiser la rentabilité), des traits (prudent, analytique), et des compétences (analyse financière, modélisation).
     *   **Moteur de Raisonnement :** Noyau logique de l'agent qui utilise une combinaison de techniques pour analyser une situation et choisir une action.
     *   **Mémoire Individuelle :** Chaque agent possède une mémoire à court et long terme qui influence ses futures décisions.
@@ -38,7 +39,7 @@ L'architecture d'AURA est modulaire, conçue pour la résilience et l'évolutivi
 
 *   **Rôle :** Fournir l'environnement social et hiérarchique où les agents existent, collaborent, négocient et se concurrencent.
 *   **Composants Clés :**
-    *   **Bus de Communication Asynchrone :** Le système nerveux central, permettant aux agents d'échanger des messages structurés (ordres, rapports, etc.).
+    *   **Bus de Communication Asynchrone :** Le système nerveux central, permettant aux agents d'échanger des messages structurés (ordres, rapports, etc.). L'implémentation initiale est `AgentMessenger` (`src/core/agents/base_agent.py`), un messager simple en mémoire.
     *   **Gestionnaire de Hiérarchie :** Applique la structure organisationnelle.
     *   **Moteur de Workflow et de Négociation :** Orchestre les processus complexes impliquant plusieurs agents.
 *   **Interactions :** Sert de liant entre tous les agents définis par le Module 1.

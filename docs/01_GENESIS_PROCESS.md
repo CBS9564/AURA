@@ -79,8 +79,8 @@ self_improvement_parameters:
 Une fois le prompt injecté, la séquence suivante se déroule sans aucune intervention humaine :
 
 *   **Validation et Parsing :** Le noyau AURA valide que le prompt respecte le schéma. Les données sont extraites et stockées dans une mémoire de configuration initiale.
-*   **Activation du "Constructeur Initial" :** C'est le seul agent pré-existant. Son rôle est d'amorcer la création des autres.
-*   **Instanciation des Pôles Fondateurs :** Le Constructeur crée les premiers agents essentiels :
+*   **Activation du "Constructeur Initial" :** C'est le seul agent pré-existant, implémenté par la classe `InitialConstructor` (`src/core/genesis/initial_constructor.py`). Son rôle est d'amorcer la création des autres agents.
+*   **Instanciation des Pôles Fondateurs :** Le Constructeur crée les premiers agents essentiels, qui sont des instances de `BaseAgent` (`src/core/agents/base_agent.py`) ou de ses sous-classes concrètes comme `DSIAgent` et `DRHAgent` (`src/core/agents/concrete_agents.py`). Ces agents sont également enregistrés auprès de l'`AgentMessenger` pour la communication interne :
     *   **Agent DSI (CIO) :** Il commence immédiatement à construire l'infrastructure virtuelle interne.
     *   **Agent DRH (CHRO) :** Il reçoit le `agent_workforce_template` et prépare les "fiches de poste" pour tous les autres agents.
 *   **Déploiement en Cascade :** L'agent DRH instancie l'Agent CEO, qui demande la création des directeurs de pôles, qui à leur tour demandent la création de leurs équipes, jusqu'à ce que l'organigramme soit complet.
