@@ -1,24 +1,23 @@
 import yaml
 from dataclasses import asdict
-from typing import Type
+from typing import Type, Dict, Any
 
 from src.core.genesis.prompt_schema import PromptSeminal
+from src.core.agents.base_agent import AgentMessenger
+from src.core.agents.concrete_agents import DSIAgent, DRHAgent
 
 class InitialConstructor:
     def __init__(self, prompt_file_path: str):
         self.prompt_file_path = prompt_file_path
         self.prompt_seminal: PromptSeminal = None
+        self.messenger = AgentMessenger()
+        self.agents: Dict[str, Any] = {}
 
     def load_and_validate_prompt(self) -> PromptSeminal:
         """Charge et valide le fichier YAML du prompt séminal."""
         try:
             with open(self.prompt_file_path, 'r', encoding='utf-8') as f:
                 raw_data = yaml.safe_load(f)
-            
-            # Valider les données brutes avec le schéma PromptSeminal
-            # Cela nécessite une bibliothèque de validation comme Pydantic ou Marshmallow
-            # Pour l'ébauche, nous allons simplement tenter de construire l'objet dataclass
-            # et nous fier aux erreurs de type si les données ne correspondent pas.
             
             self.prompt_seminal = self._from_dict(PromptSeminal, raw_data)
             print(f"Prompt séminal chargé et validé depuis {self.prompt_file_path}")
@@ -71,13 +70,40 @@ class InitialConstructor:
 
         # Étape 3: Instanciation des Pôles Fondateurs
         print("Instanciation des Pôles Fondateurs...")
-        # Ici, nous aurions la logique pour créer les agents DSI, DRH, etc.
-        # Pour l'ébauche, nous allons simuler leur création.
-        print("  - Agent DSI (CIO) créé.")
-        print("  - Agent DRH (CHRO) créé.")
+        
+        # Création et enregistrement du messager
+        self.messenger = AgentMessenger()
+
+        # Instanciation de l'Agent DSI
+        dsi_objectives = ["Construire l'infrastructure virtuelle interne.", "Assurer la sécurité des systèmes."]
+        dsi_agent = DSIAgent("DSI_Agent_1", dsi_objectives)
+        dsi_agent.set_messenger(self.messenger)
+        self.messenger.register_agent(dsi_agent.agent_id)
+        self.agents[dsi_agent.agent_id] = dsi_agent
+        print(f"  - Agent DSI ({dsi_agent.agent_id}) créé et enregistré.")
+
+        # Instanciation de l'Agent DRH
+        drh_objectives = ["Préparer les fiches de poste pour les agents.", "Gérer le recrutement virtuel."]
+        drh_agent = DRHAgent("DRH_Agent_1", drh_objectives)
+        drh_agent.set_messenger(self.messenger)
+        self.messenger.register_agent(drh_agent.agent_id)
+        self.agents[drh_agent.agent_id] = drh_agent
+        print(f"  - Agent DRH ({drh_agent.agent_id}) créé et enregistré.")
+
+        # Simulation d'une interaction initiale
+        print("\nSimulation d'une interaction initiale entre agents...")
+        dsi_agent.act(dsi_agent.decide()) # DSI agit et envoie un message
+        drh_agent.act(drh_agent.decide()) # DRH agit et envoie un message
+
+        # Récupération et traitement des messages
+        print("\nTraitement des messages en attente...")
+        for agent_id, agent_instance in self.agents.items():
+            received_messages = self.messenger.get_messages(agent_id)
+            for msg in received_messages:
+                agent_instance.receive_message(msg["sender"], msg["content"])
 
         # Étape 4: Déploiement en Cascade (simulé)
-        print("Déploiement en Cascade des agents...")
+        print("\nDéploiement en Cascade des agents (simulation)...")
         print("  - Agent CEO créé.")
         print("  - Directeurs de pôles créés.")
         print("  - Équipes opérationnelles créées.")
@@ -88,38 +114,3 @@ class InitialConstructor:
         # Étape 6: Fin de la Genèse
         print("\n--- Genèse d'AURA terminée --- ")
         print(f"Instance {self.prompt_seminal.metadata.instance_name} créée et opérationnelle. Prête pour la phase de simulation.")
-
-# Exemple d'utilisation (à exécuter dans un script séparé pour tester)
-# if __name__ == "__main__":
-#     # Créez un fichier prompt-seminal.yaml pour tester
-#     # Exemple de contenu :
-#     # metadata:
-#     #   instance_name: "TestAURA"
-#     #   prompt_schema_version: 1.0
-#     # mission_statement: "Tester la genèse."
-#     # market_analysis:
-#     #   sector: "Test"
-#     #   target_customer: "Test Customer"
-#     #   key_competitors: ["Comp1"]
-#     #   market_trends: ["Trend1"]
-#     # initial_strategy:
-#     #   business_model: "Test Model"
-#     #   go_to_market: "Test Go To Market"
-#     #   brand_positioning: "Test Brand"
-#     # ethical_charter:
-#     #   - "Rule 1"
-#     # initial_resources:
-#     #   virtual_capital: 1000
-#     #   agent_workforce_template: "Test Template"
-#     # self_improvement_parameters:
-#     #   primary_directive: "efficiency"
-#     #   evolution_aggressiveness: 0.5
-#     #   learning_scope: ["code_optimization"]
-#     #   feedback_loops: ["digital_twin_performance"]
-#
-#     constructor = InitialConstructor("path/to/your/prompt-seminal.yaml")
-#     try:
-#         constructor.load_and_validate_prompt()
-#         constructor.initiate_genesis_sequence()
-#     except Exception as e:
-#         print(f"La genèse a échoué: {e}")
