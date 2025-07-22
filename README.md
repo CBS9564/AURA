@@ -19,7 +19,8 @@ Ce dépôt contient la documentation fondamentale du projet AURA. Pour une compr
 | 4 | [**Modèle de Gouvernance**](./docs/03_GOVERNANCE_MODEL.md) | L'interaction Homme-IA, le Conseil de Supervision et le "Mode Architecte". |
 | 5 | [**Feuille de Route**](./docs/04_DEVELOPMENT_ROADMAP.md) | Les phases de développement, de la genèse à l'auto-amélioration.        |
 | 6 | [**Charte Éthique**](./docs/05_ETHICAL_CHARTER.md) | Les règles morales et légales non-négociables qui régissent AURA.         |
-| 7 | [**Glossaire**](./docs/glossary.md)            | Définitions de tous les termes spécifiques au projet.                       |
+| 7 | [**Stack Technologique**](./docs/06_TECHNOLOGICAL_STACK.md) | Les choix techniques fondamentaux pour la mise en œuvre d'AURA.           |
+| 8 | [**Glossaire**](./docs/glossary.md)            | Définitions de tous les termes spécifiques au projet.                       |
 | 8 | [**Protocole d'Interaction IA**](./PROTOCOLE_INTERACTION_IA.md) | **À LIRE.** Guide sur la manière de collaborer avec les assistants IA sur ce projet. |
 
 
