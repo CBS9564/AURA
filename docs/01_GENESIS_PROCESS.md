@@ -68,6 +68,10 @@ self_improvement_parameters:
   # Agressivité de l'évolution (0.1 = prudent, 1.0 = agressif).
   # Un taux élevé autorise des refactorings plus profonds et risqués.
   evolution_aggressiveness: 0.7
+  # Portée de l'auto-apprentissage, permettant des domaines de concentration spécifiques.
+  learning_scope: ["code_optimization", "documentation_accuracy", "security_enhancements", "feature_expansion"]
+  # Mécanismes de rétroaction explicites pour l'apprentissage.
+  feedback_loops: ["digital_twin_performance", "human_supervision_feedback", "code_review_metrics", "documentation_readability_scores"]
 ```
 
 ## 3. La Séquence de Genèse Autonome

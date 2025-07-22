@@ -63,9 +63,11 @@ L'architecture d'AURA est modulaire, conçue pour la résilience et l'évolutivi
 
 ## 6. Module 5 : Méta-Cognition & Auto-Amélioration
 
-*   **Rôle :** Permettre à AURA de s'analyser elle-même et de s'améliorer de manière autonome.
+*   **Rôle :** Permettre à AURA de s'analyser elle-même et de s'améliorer de manière autonome, tant au niveau du code que de la documentation.
 *   **Composants Clés :**
     *   **Analyseur de Performance (Profiler) :** Surveille les KPIs et l'efficacité des processus pour identifier des cibles d'amélioration.
-    *   **Générateur de Code & Architecte de Solution :** Conçoit une solution logicielle (patch, refactoring) et écrit le code correspondant.
-    *   **Pipeline CI/CD Interne :** Un processus de déploiement automatisé et sécurisé qui teste le nouveau code dans le Digital Twin avant toute application au système en production.
-*   **Interactions :** Ce module observe tous les autres modules et a la capacité (strictement contrôlée) de les modifier.
+    *   **Analyseur de Qualité de Code (Nouveau) :** Analyse le code pour la maintenabilité, l'adhérence aux standards, la complexité et les vulnérabilités de sécurité.
+    *   **Analyseur de Documentation (Nouveau) :** Vérifie la précision, l'exhaustivité, la clarté, la lisibilité et la cohérence de la documentation.
+    *   **Générateur de Code & Architecte de Solution :** Conçoit et écrit des solutions logicielles (patch, refactoring) et est capable de générer/optimiser des cas de test. Il peut également générer et mettre à jour la documentation.
+    *   **Pipeline CI/CD Interne :** Un processus de déploiement automatisé et sécurisé qui teste le nouveau code et les mises à jour de documentation dans le Digital Twin avant toute application au système en production.
+*   **Interactions :** Ce module observe tous les autres modules et a la capacité (strictement contrôlée) de les modifier. Les propositions de modifications de documentation importantes passent par une boucle de revue humaine.
