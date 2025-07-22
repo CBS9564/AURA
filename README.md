@@ -3,7 +3,7 @@
 **Version Actuelle :** 6.0
 **Statut du Projet :** Spécification Architecturale (Phase de Pré-Développement)
 
-![AURA Banner](https://i.imgur.com/your-banner-image.png)  ## 📜 Vision
+## 📜 Vision
 
 AURA est un projet de recherche et développement visant à créer une **entité organisationnelle numérique entièrement autonome**. Née d'un unique "Prompt Séminal", AURA se construit, opère, et évolue de manière indépendante. Elle intègre nativement toutes les fonctions d'une entreprise (CRM, ERP, Comptabilité) et est capable d'améliorer son propre code source pour devenir plus performante. La supervision humaine est maintenue via un protocole de gouvernance avancé, garantissant le contrôle éthique et stratégique ultime.
 
@@ -20,6 +20,8 @@ Ce dépôt contient la documentation fondamentale du projet AURA. Pour une compr
 | 5 | [**Feuille de Route**](./docs/04_DEVELOPMENT_ROADMAP.md) | Les phases de développement, de la genèse à l'auto-amélioration.        |
 | 6 | [**Charte Éthique**](./docs/05_ETHICAL_CHARTER.md) | Les règles morales et légales non-négociables qui régissent AURA.         |
 | 7 | [**Glossaire**](./docs/glossary.md)            | Définitions de tous les termes spécifiques au projet.                       |
+| 8 | [**Protocole d'Interaction IA**](./PROTOCOLE_INTERACTION_IA.md) | **À LIRE.** Guide sur la manière de collaborer avec les assistants IA sur ce projet. |
+
 
 ## 🚀 Comment Démarrer
 
@@ -38,4 +40,4 @@ Tous les contributeurs sont tenus de respecter notre [Code de Conduite](./CODE_O
 
 ## ⚖️ Licence
 
-Ce projet sera distribué sous une licence open source (détails à définir).
+Ce projet sera distribué sous une licence open source (détails à définir, potentiellement MIT ou Apache 2.0).
