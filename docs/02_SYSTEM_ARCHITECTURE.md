@@ -49,9 +49,9 @@ L'architecture d'AURA est modulaire, conçue pour la résilience et l'évolutivi
 *   **Rôle :** Fournir aux agents les "mains" et les "sens" pour agir sur le monde (virtuel ou réel) et percevoir son état. C'est l'ensemble des outils métiers internes.
 *   **Composants Clés :**
     *   **Modules Métiers Natifs :** ERP (gestion de production), CRM (gestion client), Module Comptable (gestion financière).
-    *   **Agents d'Acquisition de Connaissances :** Des agents spécialisés qui scannent des sources externes pour mettre à jour la base de connaissance.
-    *   **Base de Connaissance Vectorielle :** Une mémoire centrale et partagée, interrogeable par les agents.
-*   **Interactions :** Les agents utilisent ces outils pour exécuter leurs tâches (le CMO utilise le CRM, le COO utilise l'ERP, etc.).
+    *   **Base de Connaissance Vectorielle :** Une mémoire centrale et partagée, interrogeable par les agents. Implémentée par la classe `KnowledgeBase` (`src/core/knowledge/knowledge_base.py`), elle permet le stockage et la recherche sémantique d'informations.
+    *   **Agents d'Acquisition de Connaissances :** Des agents spécialisés (`KnowledgeAcquisitionAgent` dans `src/core/knowledge/knowledge_acquisition_agent.py`) qui scannent des sources externes (notamment le web) pour mettre à jour la base de connaissance.
+*   **Interactions :** Les agents utilisent ces outils pour exécuter leurs tâches (le CMO utilise le CRM, le COO utilise l'ERP, l'Agent d'Acquisition de Connaissances alimente la `KnowledgeBase`, etc.).
 
 ## 5. Module 4 : Moteur de Simulation & Gouvernance
 
