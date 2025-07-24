@@ -39,10 +39,11 @@ L'architecture d'AURA est modulaire, conçue pour la résilience et l'évolutivi
 
 *   **Rôle :** Fournir l'environnement social et hiérarchique où les agents existent, collaborent, négocient et se concurrencent.
 *   **Composants Clés :**
+    *   **Scheduler d'Agents (Nouveau) :** Le cœur battant du système. L'`AgentScheduler` (`src/core/agents/agent_scheduler.py`) est responsable de l'orchestration du cycle de vie de tous les agents. À chaque "tick" de l'horloge système, il active le cycle `perceive-decide-act` de chaque agent et assure la distribution des messages en attente. C'est lui qui donne vie à la simulation.
     *   **Bus de Communication Asynchrone :** Le système nerveux central, permettant aux agents d'échanger des messages structurés (ordres, rapports, etc.). L'implémentation initiale est `AgentMessenger` (`src/core/agents/base_agent.py`), un messager simple en mémoire.
     *   **Gestionnaire de Hiérarchie :** Applique la structure organisationnelle.
     *   **Moteur de Workflow et de Négociation :** Orchestre les processus complexes impliquant plusieurs agents.
-*   **Interactions :** Sert de liant entre tous les agents définis par le Module 1.
+*   **Interactions :** Sert de liant entre tous les agents définis par le Module 1. Le Scheduler est le composant actif qui pilote l'ensemble des interactions.
 
 ## 4. Module 3 : Noyau Fonctionnel d'Entreprise
 
