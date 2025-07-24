@@ -73,3 +73,7 @@ L'architecture d'AURA est modulaire, conçue pour la résilience et l'évolutivi
     *   **Générateur de Code & Architecte de Solution :** Conçoit et écrit des solutions logicielles (patch, refactoring) et est capable de générer/optimiser des cas de test. Il peut également générer et mettre à jour la documentation.
     *   **Pipeline CI/CD Interne :** Un processus de déploiement automatisé et sécurisé qui teste le nouveau code et les mises à jour de documentation dans le Digital Twin avant toute application au système en production.
 *   **Interactions :** Ce module observe tous les autres modules et a la capacité (strictement contrôlée) de les modifier. Les propositions de modifications de documentation importantes passent par une boucle de revue humaine.
+
+*   **prompt_schema.py (auto-généré)** : Mention auto-générée par l'agent correcteur pour assurer la cohérence documentation-code.
+
+*   **documentation_analyzer.py (auto-généré)** : Mention auto-générée par l'agent correcteur pour assurer la cohérence documentation-code.

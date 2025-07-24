@@ -11,7 +11,7 @@ sys.path.insert(0, project_root)
 
 from src.core.agents.agent_scheduler import AgentScheduler
 from src.core.agents.base_agent import AgentMessenger
-from src.core.agents.concrete_agents import DSIAgent, DRHAgent, DocumentationAnalyzerAgent
+from src.core.agents.concrete_agents import DSIAgent, DRHAgent, DocumentationAnalyzerAgent, DocumentationCorrectorAgent
 
 def main():
     """
@@ -43,12 +43,19 @@ def main():
         project_root=project_root
     )
 
+    doc_corrector_agent = DocumentationCorrectorAgent(
+        agent_id="DocCorrector_1",
+        objectives=["Corriger les incohérences de la documentation sur demande."],
+        project_root=project_root
+    )
+
     scheduler.register_agent(dsi_agent)
     scheduler.register_agent(drh_agent)
     scheduler.register_agent(doc_analyzer_agent)
+    scheduler.register_agent(doc_corrector_agent)
 
     # 3. Lancement de la simulation
-    num_cycles = 3 # Nombre de cycles à simuler
+    num_cycles = 4 # Augmenté pour voir le cycle complet de correction
     log.info(f"L'environnement est prêt. Lancement de la simulation pour {num_cycles} cycles.")
     
     scheduler.run_simulation(num_cycles=num_cycles, cycle_delay=2)
