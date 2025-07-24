@@ -1,5 +1,16 @@
 # Documentation AURA : Feuille de Route de Développement
 
+### Statut Actuel du Développement
+
+Actuellement, le développement se concentre principalement sur les phases suivantes :
+
+*   **Phase 1 : L'Agent Solitaire** : Implémentation et démonstration de la compétence d'agents individuels.
+*   **Phase 2 : Le Duo Collaboratif** : Établissement de workflows et de communications inter-agents.
+*   **Phase 3 : La Simulation d'un Pôle** : Mise en place des fondations pour la collaboration complexe au sein d'équipes simulées.
+*   **Phase 6 : L'Activation de l'Auto-Amélioration** : Exploration et implémentation des capacités d'auto-correction et de méta-cognition.
+
+Les phases 4 et 5 sont des objectifs futurs, le développement progressant de manière itérative et axée sur la maturité.
+
 Cette feuille de route est basée sur des phases de maturité, sans échéances temporelles fixes.
 
 ### Phase 0 : Genèse (Autonome)
