@@ -3,6 +3,7 @@ from typing import Any, Dict, List
 import os
 import re
 import logging
+import glob
 
 # Import de l'analyseur de documentation du module de méta-cognition
 from src.core.meta_cognition.documentation_analyzer import DocumentationAnalyzer
@@ -115,40 +116,101 @@ class DocumentationAnalyzerAgent(BaseAgent):
             logging.info(f"Agent {self.agent_id} est en veille.")
 
 class DocumentationCorrectorAgent(BaseAgent):
-    """Agent spécialisé dans la correction de la documentation."""
+    """
+    Agent spécialisé dans la correction intelligente de la documentation.
+    Il insère les mentions de fichiers au bon endroit dans le document d'architecture.
+    """
     def __init__(self, agent_id: str, objectives: List[str], project_root: str):
         super().__init__(agent_id, "DocumentationCorrector", objectives)
         self.project_root = project_root
         self.tasks = []
-        logging.info(f"Agent Correcteur de Documentation {self.agent_id} initialisé.")
+        self.module_mapping = {
+            "genesis": "## 2. Module 1 : Moteur Cognitif & Personas IA",
+            "agents": "## 3. Module 2 : Plateforme Multi-Agents & Communication",
+            "knowledge": "## 4. Module 3 : Noyau Fonctionnel d'Entreprise",
+            "meta_cognition": "## 6. Module 5 : Méta-Cognition & Auto-Amélioration"
+        }
+        logging.info(f"Agent Correcteur de Documentation {self.agent_id} initialisé avec une logique contextuelle.")
 
     def perceive(self) -> Any:
         return self.tasks
 
     def decide(self) -> Any:
         if self.tasks:
-            task = self.tasks.pop(0) # Prend la première tâche
-            logging.info(f"Agent {self.agent_id} a une nouvelle tâche de correction : {task}")
-            return {"action": "fix_documentation", "task_details": task}
+            task = self.tasks.pop(0)
+            logging.info(f"Agent {self.agent_id} a une nouvelle tâche de correction contextuelle : {task}")
+            return {"action": "fix_documentation_contextually", "task_details": task}
         return {"action": "idle"}
 
+    def _get_module_from_filename(self, filename: str) -> str:
+        """Détermine le module architectural à partir du nom de fichier."""
+        # Cas spécifiques pour les fichiers à la racine de 'agents'
+        if filename in ["agent_scheduler.py", "base_agent.py", "concrete_agents.py"]:
+            return "agents"
+        # Cas général basé sur le sous-répertoire
+        for key in self.module_mapping.keys():
+            if f"/{key}/" in filename.replace("\\", "/"):
+                return key
+        return None
+
     def act(self, action: Any):
-        if action.get("action") == "fix_documentation":
+        if action.get("action") == "fix_documentation_contextually":
             details = action["task_details"]
             file_to_add = details["file_to_add"]
             target_doc_path = os.path.join(self.project_root, details["target_doc"])
             
-            logging.info(f"Agent {self.agent_id} corrige la documentation : ajout de '{file_to_add}' dans '{target_doc_path}'.")
-            
+            logging.info(f"Agent {self.agent_id} commence la correction contextuelle pour '{file_to_add}'.")
+
             try:
-                with open(target_doc_path, 'a', encoding='utf-8') as f:
-                    f.write(f"\n\n*   **{file_to_add} (auto-généré)** : Mention auto-générée par l'agent correcteur pour assurer la cohérence documentation-code.")
+                # 1. Déterminer le module cible
+                # Pour obtenir le chemin complet, on doit le chercher (c'est une simplification pour l'instant)
+                # Idéalement, l'analyseur fournirait le chemin complet.
+                # On simule cette recherche pour la démo.
+                potential_path = glob.glob(os.path.join(self.project_root, 'src', '**', file_to_add), recursive=True)
+                if not potential_path:
+                    raise FileNotFoundError(f"Impossible de trouver le chemin pour {file_to_add}")
                 
+                module_key = self._get_module_from_filename(potential_path[0])
+                if not module_key:
+                    raise ValueError(f"Impossible de déterminer le module pour {file_to_add}")
+
+                target_section_header = self.module_mapping[module_key]
+                
+                # 2. Lire le document et insérer au bon endroit
+                with open(target_doc_path, 'r', encoding='utf-8') as f:
+                    lines = f.readlines()
+
+                new_content = f"*   **{file_to_add}** : Mention auto-générée par l'agent correcteur.\n"
+                
+                # Trouver la section et le marqueur d'insertion
+                section_start_index = -1
+                insertion_index = -1
+                
+                for i, line in enumerate(lines):
+                    if line.strip() == target_section_header:
+                        section_start_index = i
+                        continue
+                    
+                    # Une fois dans la bonne section, chercher le marqueur de fin
+                    if section_start_index != -1 and "<!-- FIN DES COMPOSANTS -->" in line:
+                        insertion_index = i
+                        break
+                
+                if insertion_index == -1:
+                     raise ValueError(f"Impossible de trouver le point d'insertion (marqueur) dans la section '{target_section_header}'")
+
+                lines.insert(insertion_index, new_content)
+
+                # 3. Écrire le nouveau contenu
+                with open(target_doc_path, 'w', encoding='utf-8') as f:
+                    f.writelines(lines)
+
+                logging.info(f"Correction réussie. '{file_to_add}' a été ajouté à la section '{target_section_header}'.")
                 report = {"type": "correction_report", "status": "success", "details": f"Fichier {file_to_add} ajouté à {details['target_doc']}"}
                 self.communicate("DSI_Agent_1", report)
 
             except Exception as e:
-                logging.error(f"Erreur lors de la correction de la documentation par l'agent {self.agent_id}: {e}")
+                logging.error(f"Erreur lors de la correction contextuelle par l'agent {self.agent_id}: {e}")
                 report = {"type": "correction_report", "status": "failure", "details": str(e)}
                 self.communicate("DSI_Agent_1", report)
 
